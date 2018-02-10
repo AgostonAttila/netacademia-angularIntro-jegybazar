@@ -7,14 +7,24 @@ import { TicketComponent } from './ticket/ticket.component';
 import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { EventListComponent } from './event-list/event-list.component';
+import { EventDetailComponent } from './event-detail/event-detail.component';
 
 const routes: Routes = [
-    { path: 'home', component: HomeComponent },
-    { path: 'event', component: EventComponent },
+    { path: 'home', component: HomeComponent }, 
+    {
+        path: 'event',
+        component: EventComponent,
+        children: [
+            { path: 'list', component: EventListComponent },
+            { path: 'new', component: EventDetailComponent },
+            { path: ':id/edit', component: EventDetailComponent }
+        ]
+    },
     { path: 'ticket', component: TicketComponent },
-    { path: 'about', component: AboutComponent },    
-    { path: 'login', component: LoginComponent },  
-    { path: 'registration', component: RegistrationComponent },  
+    { path: 'about', component: AboutComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'registration', component: RegistrationComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent },
 ];
@@ -28,6 +38,8 @@ export class AppRoutingModule {
     static routableComponents = [
         HomeComponent,
         EventComponent,
+        EventListComponent,
+        EventDetailComponent,
         TicketComponent,
         AboutComponent,
         LoginComponent,

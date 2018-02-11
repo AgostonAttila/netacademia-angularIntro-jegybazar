@@ -1,9 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
     <a class="navbar-brand" routerLink="/home">Jegybazár</a>
-    <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed"
-            aria-controls="navbarNavAltMarkup"
-            aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+      aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" [collapse]="isCollapsed">
@@ -12,12 +11,13 @@
         <a class="nav-item nav-link" routerLinkActive="active" routerLink="/event/list">Események</a>
         <a class="nav-item nav-link" routerLinkActive="active" routerLink="/ticket/list">Jegyek</a>
         <a class="nav-item nav-link" routerLinkActive="active" routerLink="/about">Rólunk</a>
-        <a class="nav-item nav-link" routerLinkActive="active" routerLink="/user/login">Belépés</a>
-        <a class="nav-item nav-link btn btn-primary text-light ml-lg-2 btn-sm"
-           routerLinkActive="active"
-           routerLink="/user/registration"
-        >Regisztráció</a>
-        <a class="nav-item nav-link" routerLinkActive="active" (click)="logout()")>Kilépés</a>
+
+        <ng-container *ngIf="!userService.isLoggedin">
+          <a class="nav-item nav-link" routerLinkActive="active" routerLink="/user/login">Belépés</a>
+          <a class="nav-item nav-link btn btn-primary text-light ml-lg-2 btn-sm" routerLinkActive="active" routerLink="/user/registration">Regisztráció</a>
+        </ng-container>
+
+        <a class="nav-item nav-link" routerLinkActive="active" (click)="logout()" )>Kilépés</a>
       </div>
     </div>
   </div>

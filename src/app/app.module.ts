@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { CollapseModule } from 'ngx-bootstrap';
+
 import { AppRoutingModule } from './app-routing.module';
+
+import { CollapseModule ,AlertModule} from 'ngx-bootstrap';
 
 import { AppComponent } from './app.component';
 import { EventcardComponent } from './event/eventcard/eventcard.component';
@@ -11,6 +13,7 @@ import { NavbarComponent } from './core/navbar/navbar.component';
 
 import { EventService } from './shared/event.service';
 import { UserService } from './shared/user.service';
+
 
 @NgModule({
   declarations: [
@@ -24,6 +27,7 @@ import { UserService } from './shared/user.service';
   imports: [
     BrowserModule,
     CollapseModule.forRoot(),
+    AlertModule.forRoot(),
     AppRoutingModule
   ],
   providers: [EventService,UserService],

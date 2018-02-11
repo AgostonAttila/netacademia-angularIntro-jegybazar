@@ -8,13 +8,22 @@ import { UserService } from '../../shared/user.service';
 })
 export class LoginComponent implements OnInit {
 
+  public error: string;
+
   constructor(private _userService: UserService) { }
 
   ngOnInit() {
   }
 
   login(email: string, password: string) {
-    this._userService.login(email, password);
+    if(!this._userService.login(email, password)) {
+      this.error = 'Hiba a belépési adatokban.Próbáld újra';
+    };
+  }
+
+
+  clearError(){
+    delete(this.error);
   }
 
 }

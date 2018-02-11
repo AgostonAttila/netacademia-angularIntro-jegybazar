@@ -10,14 +10,25 @@ import { EventModel } from '../../shared/event-model';
 export class EventListComponent implements OnInit {
   //ez jo pelda lehet a smart és dumb componentre
 
-  public events: EventModel[];
+  public eventsGrouppedBy3: EventModel[];
 
   constructor(private _eventService: EventService) {
-    this.events = _eventService.getAllEvents();
-    console.log(this.events);
   }
 
   ngOnInit() {
+    //indexek [] [0,1,2,3,4,5]   -->  reduce --> [[0,1,2]],[3,4,5]
+
+    this.eventsGrouppedBy3 = this._eventService.getAllEvents()
+      .reduce((acc, curr: EventModel, ind: number) => {
+        if (ind % 3 === 0) {
+          acc.push([]);
+        }
+        acc[acc.length - 1].push(curr);
+        return acc;
+      }, []);
+
+    console.log(this.eventsGrouppedBy3);
+
   }
 
 }

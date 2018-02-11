@@ -9,6 +9,8 @@ import { FooterComponent } from './core/footer/footer.component';
 import { JumbotronComponent } from './core/jumbotron/jumbotron.component';
 import { NavbarComponent } from './core/navbar/navbar.component';
 
+import { EventService } from './shared/event.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +25,9 @@ import { NavbarComponent } from './core/navbar/navbar.component';
     CollapseModule.forRoot(),
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    EventService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,13 +1,14 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { CollapseModule } from 'ngx-bootstrap';
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-
-import { CollapseModule } from 'ngx-bootstrap';
-import { NavbarComponent } from './navbar/navbar.component';
-import { JumbotronComponent } from './jumbotron/jumbotron.component';
-import { EventcardComponent } from './eventcard/eventcard.component';
-import { FooterComponent } from './footer/footer.component';
+import { EventcardComponent } from './event/eventcard/eventcard.component';
+import { FooterComponent } from './core/footer/footer.component';
+import { JumbotronComponent } from './core/jumbotron/jumbotron.component';
+import { NavbarComponent } from './core/navbar/navbar.component';
+import { EventService } from './shared/event.service';
 
 @NgModule({
   declarations: [
@@ -15,13 +16,16 @@ import { FooterComponent } from './footer/footer.component';
     NavbarComponent,
     JumbotronComponent,
     EventcardComponent,
-    FooterComponent
+    FooterComponent,
+    ...AppRoutingModule.routableComponents
   ],
-  imports: [   
+  imports: [
     BrowserModule,
-    CollapseModule.forRoot()
+    CollapseModule.forRoot(),
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [EventService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

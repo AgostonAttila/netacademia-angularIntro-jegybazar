@@ -3,7 +3,7 @@ export class UserModel {
     name: string;
     email: string;
     address: string;
-    dateOfBirht: string;
+    dateOfBirth: string;
     gender: string;
 
 
@@ -21,8 +21,19 @@ export class UserModel {
             name: 'Réka Matilda',
             email: 'legyek@vmi.com',
             address: 'Straferr utca',
-            dateOfBirht: '2018.01.01',
+            dateOfBirth: '2018.01.01',
             gender: 'female'
         };
     }
+
+    static get emptyUser(): UserModel {
+            return {
+              id: 0,
+              name: '',
+              email: '',
+              address: '',
+              dateOfBirth: '',
+              gender: ''
+            };
+          }
 }

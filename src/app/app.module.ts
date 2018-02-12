@@ -13,6 +13,8 @@ import { NavbarComponent } from './core/navbar/navbar.component';
 
 import { EventService } from './shared/event.service';
 import { UserService } from './shared/user.service';
+import { TicketService } from './shared/ticket.service';
+import { LoggedInGuardGuard } from './shared/logged-in-guard.guard';
 
 
 @NgModule({
@@ -30,7 +32,7 @@ import { UserService } from './shared/user.service';
     AlertModule.forRoot(),
     AppRoutingModule
   ],
-  providers: [EventService,UserService],
+  providers: [EventService,UserService,TicketService,LoggedInGuardGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

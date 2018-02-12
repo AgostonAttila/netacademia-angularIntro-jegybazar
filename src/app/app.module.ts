@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -17,6 +18,7 @@ import { TicketService } from './shared/ticket.service';
 import { LoggedInGuardGuard } from './shared/logged-in-guard.guard';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +30,7 @@ import { LoggedInGuardGuard } from './shared/logged-in-guard.guard';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     CollapseModule.forRoot(),
     AlertModule.forRoot(),
     AppRoutingModule

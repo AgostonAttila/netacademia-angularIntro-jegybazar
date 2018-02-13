@@ -93,23 +93,33 @@ export class EventService {
     return ev.length > 0 ? ev[0] : new EventModel(EventModel.emptyEvent);
   }
 
-  update(ev: EventModel) {
-    throw new Error("Method not implemented.");
-  }
+  update(param: EventModel) {
+    this._events = this._events.map(ev => {     
+      // if (ev.id === param.id) {
+      //   return (...param);
+      //  }
+      //  else {
+      //    return ev;
+      //  }
+      return ev.id === param.id ? {...param} : ev;
+       });
+    }
+
+
 
   create(param: EventModel) {
-    this._events = [
-      ...this._events,
-      {
-        id: this._getMaxId(),
-        ...param
+        this._events = [
+          ...this._events,
+          {
+            id: this._getMaxId(),
+            ...param
+          }
+        ];
       }
-    ];
-  }
 
   private _getMaxId() {
-    return this._events.reduce((x, y) => x.id > y.id ? x : y).id + 1
-  }
+        return this._events.reduce((x, y) => x.id > y.id ? x : y).id + 1
+      }
 
 }
 

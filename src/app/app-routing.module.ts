@@ -23,26 +23,26 @@ const routes: Routes = [
     path: 'event',
     component: EventComponent,
     children: [
-      {path: 'list', component: EventListComponent},
-      {path: 'new', component: EventDetailComponent},
-      {path: ':id', component: EventDetailComponent}
+      {path: '', component: EventListComponent},
+      {path: 'new', component: EventDetailComponent, canActivate: [LoggedInGuardGuard]},
+      {path: ':id', component: EventDetailComponent, canActivate: [LoggedInGuardGuard]}
     ]
   },
   {
     path: 'ticket',
     component: TicketComponent,
     children: [
-      {path: 'list', component: TicketListComponent},
-      {path: 'new', component: TicketDetailComponent},
-      {path: ':id/bid', component: BidComponent},
+      {path: '', component: TicketListComponent},
+      {path: 'new', component: TicketDetailComponent, canActivate: [LoggedInGuardGuard]},
+      {path: ':id', component: BidComponent, canActivate: [LoggedInGuardGuard]},
     ]
   },
   {path: 'about', component: AboutComponent},
   {
     path: 'user',
     children: [
-      {path: '', component: ProfileComponent,  canActivate: [LoggedInGuardGuard]},
-      {path: 'edit', component: ProfileEditComponent,  canActivate: [LoggedInGuardGuard]},
+      {path: '', component: ProfileComponent, canActivate: [LoggedInGuardGuard]},
+      {path: 'edit', component: ProfileEditComponent, canActivate: [LoggedInGuardGuard]},
       {path: 'login', component: LoginComponent},
       {path: 'registration', component: RegistrationComponent}
     ]

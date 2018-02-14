@@ -4,13 +4,54 @@ import { UserModel } from './user-model';
 
 @Injectable()
 export class UserService {
-
   isLoggedin = false;
+
   private _user: UserModel;
   private _allUsers: UserModel[];
 
   constructor(private _router: Router) {
-    this._allUsers = [
+    this._allUsers = this._getMockData();
+  }
+
+  login(email: string, password: string): boolean {
+    if (email === 'angular' && password === 'angular') {
+      this._user = new UserModel(UserModel.exampleUser);
+      this.isLoggedin = true;
+      this._router.navigate(['/user']);
+    }
+    console.log('be vagyunk-e lepve:', this.isLoggedin);
+    return false;
+  }
+
+  register(param?: UserModel) {
+    if (param) {
+      this._user = new UserModel(param);
+    } else {
+      this._user = new UserModel(UserModel.exampleUser);
+    }
+    this.isLoggedin = true;
+    this._router.navigate(['/user']);
+    console.log('be vagyunk-e lepve:', this.isLoggedin);
+  }
+
+  logout() {
+    this._user = new UserModel();
+    this.isLoggedin = false;
+    this._router.navigate(['/home']);
+    console.log('be vagyunk-e lepve:', this.isLoggedin);
+  }
+
+  getUserById(id: number) {
+    const user = this._allUsers.filter(u => u.id === id);
+    return user.length > 0 ? user[0] : new UserModel(UserModel.emptyUser);
+  }
+
+  getCurrentUser() {
+    return this._user;
+  }
+
+  private _getMockData() {
+    return [
       new UserModel({
         'id': 1,
         'name': 'Pista ba',
@@ -38,42 +79,4 @@ export class UserService {
     ];
   }
 
-  getUserById(id: number) {
-    const user = this._allUsers.filter(u => u.id === id);
-    return user.length > 0 ? user[0] : new UserModel(UserModel.emptyUser);
-  }
-
-  getCurrentUser() {
-    return this._user;
-  }
-
-  login(email: string, password: string): boolean {
-    if (email === 'angular' && password === 'angular') {
-      this._user = new UserModel(UserModel.exampleUser);
-      this.isLoggedin = true;
-      this._router.navigate(['/user']);
-    }
-    console.log('bevagyunk e lepve:', this.isLoggedin)
-    return false;
-  }
-
-  register(param?: UserModel) {
-    if (param) {
-      this._user = new UserModel(param);
-    } else {
-      this._user = new UserModel(UserModel.exampleUser);
-    }
-    this.isLoggedin = true;
-    this._router.navigate(['/user']);
-    console.log('bevagyunk e lepve:', this.isLoggedin)
-  }
-
-
-  logout() {
-    //delete (this._user);
-    this._user = new UserModel();
-    this.isLoggedin = false;
-    console.log('bevagyunk e lepve:', this.isLoggedin)
-    this._router.navigate(['/home']);
-  }
 }

@@ -11,13 +11,12 @@ export class EventModel {
     }
   }
 
-
   static get emptyEvent() {
-        return {        
-          'name': '',
-          'date': '',
-          'pictureURL': '',
-          'description': ''
-        };
-      }
+    return {
+      'name': '',
+      'date': '',
+      'pictureURL': '',
+      'description': ''
+    };
+  }
 }

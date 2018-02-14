@@ -8,7 +8,6 @@ import { UserModel } from '../../shared/user-model';
   styleUrls: ['./profile-edit.component.css']
 })
 export class ProfileEditComponent implements OnInit {
-
   user: UserModel;
 
   constructor(private _userService: UserService) { }
